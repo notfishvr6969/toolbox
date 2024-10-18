@@ -1,5 +1,5 @@
 {
-  "updateurl": "https://raw.githubusercontent.com/ravendevteam/toolbox/refs/heads/main/toolbox/packages.json",
+  "updateurl": "https://raw.githubusercontent.com/ravendevteam/toolbox/refs/heads/main/packages.json",
   "packages": [
     {
       "name": "Scratchpad",
