@@ -160,7 +160,11 @@ def display_help():
     print("  list         - List available packages")
     print("  install      - Install a specified package")
     print("  update       - Update the package list from the server")
+    print("  json         - Print the path to the packages.json file")
     print("License: https://ravendevteam.org/files/BSD-3-Clause.txt")
+
+def print_json_path():
+    print(f"{get_package_file_path()}")
 
 def main():
     package_file_path = get_package_file_path()
@@ -189,8 +193,10 @@ def main():
         update_packages()
     elif command == "help":
         display_help()
+    elif command == "json":
+        print_json_path()
     else:
-        handle_error(f"Unknown command: {command}. Available commands are 'list', 'install', and 'update'.")
+        handle_error(f"Unknown command: {command}. Available commands are 'list', 'install', 'update', and 'json'.")
 
 if __name__ == "__main__":
     main()
