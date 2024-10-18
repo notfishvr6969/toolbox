@@ -26,23 +26,32 @@ def handle_error(message):
     sys.exit(1)
 
 def update_packages():
+    default_update_url = "https://raw.githubusercontent.com/ravendevteam/toolbox/refs/heads/main/packages.json"
+
     try:
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
-
         update_url = data.get('updateurl', None)
-        if not update_url:
-            handle_error("No update URL found in the current package list.")
 
-        print("Updating package list from server...")
+    except (FileNotFoundError, json.JSONDecodeError):
+        update_url = None
+
+    if not update_url:
+        update_url = default_update_url
+        print(f"Warning: No update URL found or the package list is missing. Using default update URL: {default_update_url}")
+        print("Please note that the above error is normal upon first time updating.")
+
+    print("Updating package list from server...")
+
+    try:
         urllib.request.urlretrieve(update_url, get_package_file_path())
         print("Update successful!")
     except urllib.error.HTTPError as e:
-        handle_error(f"HTTP Error: {e.code} - {e.reason}. Check if the update URL is correct.")
+        handle_error(f"HTTP Error: {e.code} - {e.reason}. Please check the update URL or try again later.")
     except urllib.error.URLError as e:
-        handle_error(f"URL Error: {str(e)}. Check your internet connection or the URL.")
+        handle_error(f"URL Error: {str(e)}. Please check your internet connection or try again later.")
     except Exception as e:
-        handle_error(f"Failed to update packages: {str(e)}")
+        handle_error(f"Failed to update packages: {str(e)}. Please try again or check your settings.")
 
 def list_packages():
     try:
@@ -155,12 +164,14 @@ def display_help():
 
 def main():
     package_file_path = get_package_file_path()
-    
+
     if not package_file_path.exists():
         print("Package list not found.")
         print("It looks like you need to update the package list.")
-        print("Run 'toolbox.py update' to download the latest packages.json.")
-        sys.exit(0)
+        print("Attempting to download the latest packages.json...")
+        update_packages()
+        if not package_file_path.exists():
+            handle_error("Failed to download the package list. Please check your internet connection or try again later.")
 
     if len(sys.argv) < 2:
         display_help()
