@@ -35,6 +35,22 @@
       "os": [
         "Windows"
       ]
+    },
+    {
+      "name": "Toolbox",
+      "version": "1.0.0",
+      "url": {
+        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v1.0.0/toolbox.exe"
+      },
+      "description": "Package manager for Raven software.",
+      "sha256": {
+        "Windows": "a5a600e3b3c4e663ff9b6a26c82778a01516d5055311cdd8a920f6e9ffd73a50"
+      },
+      "requirepath": false,
+      "shortcut": true,
+      "os": [
+        "Windows"
+      ]
     }
   ]
 }
