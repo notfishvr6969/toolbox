@@ -24,7 +24,7 @@
       "name": "Redact",
       "version": "1.1.0",
       "url": {
-        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.0/redact.exe",
+        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.0/redact.exe"
       },
       "description": "Delete your files easily and securely. ",
       "sha256": {
