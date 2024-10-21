@@ -1,2 +1,2 @@
-pyinstaller --onefile --noconsole --icon="ICON.ico" toolbox.py
+pyinstaller --onefile --noconsole --icon=".\ICON.ico" toolbox.py
 pause > nul
