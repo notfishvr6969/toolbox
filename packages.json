@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "Scratchpad",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "url": {
         "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/scratchpad.exe",
         "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/Scratchpad-MacOS.zip"
