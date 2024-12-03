@@ -1,1 +1,1 @@
-nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=dist toolbox.py
+nuitka --onefile --standalone --output-dir=dist toolbox.py

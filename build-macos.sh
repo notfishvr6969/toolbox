@@ -1,1 +1,1 @@
-nuitka --onefile --standalone --enable-plugin=pyqt5 --macos-create-app-bundle --output-dir=dist toolbox.py
+nuitka --onefile --standalone --macos-create-app-bundle --output-dir=dist toolbox.py
