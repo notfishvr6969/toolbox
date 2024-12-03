@@ -8,6 +8,7 @@ import subprocess
 from tqdm import tqdm
 import shutil
 import zipfile
+from datetime import datetime
 
 def get_package_file_path():
     if sys.platform == "win32":
@@ -24,6 +25,60 @@ def get_installation_path(package_name):
 def handle_error(message):
     print(f"Error: {message}")
     sys.exit(1)
+
+def get_record_file_path():
+    """
+    Get the path to the record.json file that tracks installed packages.
+    """
+    if sys.platform == "win32":
+        return Path(os.getenv('APPDATA')) / "ravendevteam" / "record.json"
+    else:
+        return Path.home() / "Library" / "Application Support" / "ravendevteam" / "record.json"
+
+def read_record():
+    """
+    Read the record.json file and return its contents as a dictionary.
+    """
+    record_file = get_record_file_path()
+    if not record_file.exists():
+        return {}
+    try:
+        with open(record_file, 'r') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def write_record(record):
+    """
+    Write the provided dictionary to the record.json file.
+    """
+    record_file = get_record_file_path()
+    record_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(record_file, 'w') as f:
+        json.dump(record, f, indent=4)
+
+def uninstall_package(package_name):
+    try:
+        install_path = get_installation_path(package_name)
+
+        if not install_path.exists():
+            handle_error(f"Package '{package_name}' is not installed.")
+
+        confirmation = input(f"Are you sure you want to uninstall '{package_name}'? (Y/N): ").strip().lower()
+        if confirmation != 'y':
+            print(f"Uninstallation of '{package_name}' cancelled.")
+            return
+
+        shutil.rmtree(install_path)
+        print(f"'{package_name}' has been successfully uninstalled.")
+
+        record = read_record()
+        if package_name in record:
+            del record[package_name]
+            write_record(record)
+
+    except Exception as e:
+        handle_error(f"An error occurred while uninstalling '{package_name}': {str(e)}. Please try again.")
 
 def update_packages():
     default_update_url = "https://raw.githubusercontent.com/ravendevteam/toolbox/refs/heads/main/packages.json"
@@ -144,13 +199,20 @@ def install_package(package_name):
                     print(f"A shortcut for {package_name} has been created on your desktop.")
                 else:
                     print(f"Warning: Couldn't find the main executable for {package_name} to create a shortcut.")
+            
+            record = read_record()
+            record[package_name] = {
+                "version": package["version"],
+                "installed_on": datetime.now().isoformat()
+            }
+            write_record(record)
         else:
             handle_error(f"Installation path does not exist after extraction. Installation failed.")
 
     except FileNotFoundError:
         handle_error("Package list not found. Try updating the package list using 'update'.")
     except Exception as e:
-        handle_error(f"An error occurred during installation: {str(e)}. Please try again or check the logs.")
+        handle_error(f"An error occurred during installation: {str(e)}.")
 
 def display_help():
     print("Toolbox Package Manager")
@@ -159,6 +221,7 @@ def display_help():
     print("Possible commands:")
     print("  list         - List available packages")
     print("  install      - Install a specified package")
+    print("  uninstall    - Uninstall a specified package")
     print("  update       - Update the package list from the server")
     print("  json         - Print the path to the packages.json file")
     print("License: https://ravendevteam.org/files/BSD-3-Clause.txt")
@@ -175,7 +238,7 @@ def main():
         print("Attempting to download the latest packages.json...")
         update_packages()
         if not package_file_path.exists():
-            handle_error("Failed to download the package list. Please check your internet connection or try again later.")
+            handle_error("Failed to download the package list.")
 
     if len(sys.argv) < 2:
         display_help()
@@ -189,6 +252,10 @@ def main():
         if len(sys.argv) < 3:
             handle_error("You must specify the package name to install.")
         install_package(sys.argv[2])
+    elif command == "uninstall":
+        if len(sys.argv) < 3:
+            handle_error("You must specify the package name to uninstall.")
+        uninstall_package(sys.argv[2])
     elif command == "update":
         update_packages()
     elif command == "help":
@@ -196,7 +263,7 @@ def main():
     elif command == "json":
         print_json_path()
     else:
-        handle_error(f"Unknown command: {command}. Available commands are 'list', 'install', 'update', and 'json'.")
+        handle_error(f"Unknown command: {command}.")
 
 if __name__ == "__main__":
     main()

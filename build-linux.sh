@@ -1,1 +1,1 @@
-pyinstaller --onefile --noconsole --icon="./ICON.ico" toolbox.py
+nuitka --onefile --standalone --enable-plugin=pyqt5 --output-dir=dist toolbox.py
