@@ -3,15 +3,15 @@
   "packages": [
     {
       "name": "Scratchpad",
-      "version": "1.1.1",
+      "version": "1.2.1",
       "url": {
-        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.1.1/scratchpad.exe",
-        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.1.1/Scratchpad-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/scratchpad.exe",
+        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/Scratchpad-MacOS.zip"
       },
       "description": "Simple, professional plaintext editor.",
       "sha256": {
-        "Windows": "ff2ef550607526c52d1571e77afcc3ed1e35d366c90aba4ce13f74bad1a47a92",
-        "macOS": "05c4c151a98ece1363f3720d62c8f8a1bef2d3cfd5dfbf1233d52b99343aee49"
+        "Windows": "f50080ca7eb315681fde916a61a4ef43561188cfc0035e45a91ff647156c3a28",
+        "macOS": "bb168bea12fbb0804800277454fe967c17c5575d75486a992df4e429a65e48a0"
       },
       "requirepath": false,
       "shortcut": true,
@@ -32,6 +32,22 @@
       },
       "requirepath": false,
       "shortcut": true,
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "name": "Toolbox",
+      "version": "1.0.0",
+      "url": {
+        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v1.0.0/toolbox.exe"
+      },
+      "description": "Package manager for Raven software.",
+      "sha256": {
+        "Windows": "a5a600e3b3c4e663ff9b6a26c82778a01516d5055311cdd8a920f6e9ffd73a50"
+      },
+      "requirepath": true,
+      "shortcut": false,
       "os": [
         "Windows"
       ]
