@@ -216,7 +216,7 @@ def install_package(package_name):
 
 def display_help():
     print("Toolbox Package Manager")
-    print("Version: 2.0.0")
+    print("Version: 2.1.0")
     print("Usage: toolbox.py <command> <package>")
     print("Possible commands:")
     print("  list         - List available packages")
