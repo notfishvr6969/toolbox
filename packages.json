@@ -67,8 +67,8 @@
         "Windows": "b8e3446b167fbd93bc002fdc42de43d132c41e0cbf49de7653a3722228196c64",
         "macOS": "a099d5172c6754e6f832efffb416b47b9b8973293132d8fcf25d68f80bb4ddf7"
       },
-      "requirepath": true,
-      "shortcut": false,
+      "requirepath": false,
+      "shortcut": true,
       "os": [
         "Windows",
         "macOS"
