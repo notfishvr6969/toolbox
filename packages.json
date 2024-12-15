@@ -3,15 +3,15 @@
   "packages": [
     {
       "name": "Scratchpad",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "url": {
-        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/scratchpad.exe",
-        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/Scratchpad-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.2/scratchpad.exe",
+        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.2/Scratchpad-MacOS.zip"
       },
       "description": "Simple, professional plaintext editor.",
       "sha256": {
-        "Windows": "f50080ca7eb315681fde916a61a4ef43561188cfc0035e45a91ff647156c3a28",
-        "macOS": "bb168bea12fbb0804800277454fe967c17c5575d75486a992df4e429a65e48a0"
+        "Windows": "9dfbb7958bebf8bdd62544a5aca6feeb0a47709cba79f6ca6241339fc993cb5e",
+        "macOS": "8d5af5f9cb5e42661512313a093f6261b320d7cfe86804d8c29508e086ab5e52"
       },
       "requirepath": false,
       "shortcut": true,
