@@ -57,15 +57,15 @@
     },
     {
       "name": "FileDiff",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "url": {
-        "Windows": "https://github.com/ravendevteam/filediff/releases/download/v1.0.0/filediff.exe",
-        "macOS": "https://github.com/ravendevteam/filediff/releases/download/v1.0.0/filediff-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/filediff/releases/download/v1.0.1/filediff.exe",
+        "macOS": "https://github.com/ravendevteam/filediff/releases/download/v1.0.1/filediff-MacOS.zip"
       },
       "description": "Simple utility for comparing the contents of two files.",
       "sha256": {
-        "Windows": "b8e3446b167fbd93bc002fdc42de43d132c41e0cbf49de7653a3722228196c64",
-        "macOS": "a099d5172c6754e6f832efffb416b47b9b8973293132d8fcf25d68f80bb4ddf7"
+        "Windows": "3a15589ef58afd5a54578b20f4f03479aee41331820816e412c993e53ce2095f",
+        "macOS": "38948914462e8fde12f22b33586f1d06c10a7399d421a7d939497935ec95a2a9"
       },
       "requirepath": false,
       "shortcut": true,
