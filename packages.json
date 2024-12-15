@@ -22,13 +22,13 @@
     },
     {
       "name": "Redact",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "url": {
-        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.1/redact.exe"
+        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.2/redact.exe"
       },
       "description": "File shredder with a focus on simplicity and security.",
       "sha256": {
-        "Windows": "c4df9869894ce5c8ea4a518550c386e5e5a903bf3d1fa73844a6b61ea675e78c"
+        "Windows": "dfab398d80594350c8002e9236d3a6dfba759acdcfd2856b7c6f18e721658a0d"
       },
       "requirepath": false,
       "shortcut": true,
