@@ -73,6 +73,25 @@
         "Windows",
         "macOS"
       ]
+    },
+    {
+      "name": "Resmon",
+      "version": "1.0.0",
+      "url": {
+        "Windows": "https://github.com/ravendevteam/resmon/releases/download/v1.0.0/resmon.exe",
+        "macOS": "https://github.com/ravendevteam/resmon/releases/download/v1.0.0/resmon-MacOS.zip"
+      },
+      "description": "A fast, lightweight system resource monitor.",
+      "sha256": {
+        "Windows": "33abdad0d7ec2c3605cccacae4fbc876bd6d82f8fa44e3809a2c837147377324",
+        "macOS": "2fd49ed8aee5c146cafccdc559cd971bb4358c8e79cf634e3bd1bfe3232a9829"
+      },
+      "requirepath": false,
+      "shortcut": true,
+      "os": [
+        "Windows",
+        "macOS"
+      ]
     }
   ]
 }
