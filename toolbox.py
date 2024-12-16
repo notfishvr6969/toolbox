@@ -27,18 +27,12 @@ def handle_error(message):
     sys.exit(1)
 
 def get_record_file_path():
-    """
-    Get the path to the record.json file that tracks installed packages.
-    """
     if sys.platform == "win32":
         return Path(os.getenv('APPDATA')) / "ravendevteam" / "record.json"
     else:
         return Path.home() / "Library" / "Application Support" / "ravendevteam" / "record.json"
 
 def read_record():
-    """
-    Read the record.json file and return its contents as a dictionary.
-    """
     record_file = get_record_file_path()
     if not record_file.exists():
         return {}
@@ -49,9 +43,6 @@ def read_record():
         return {}
 
 def write_record(record):
-    """
-    Write the provided dictionary to the record.json file.
-    """
     record_file = get_record_file_path()
     record_file.parent.mkdir(parents=True, exist_ok=True)
     with open(record_file, 'w') as f:
@@ -60,44 +51,34 @@ def write_record(record):
 def uninstall_package(package_name):
     try:
         install_path = get_installation_path(package_name)
-
         if not install_path.exists():
             handle_error(f"Package '{package_name}' is not installed.")
-
         confirmation = input(f"Are you sure you want to uninstall '{package_name}'? (Y/N): ").strip().lower()
         if confirmation != 'y':
             print(f"Uninstallation of '{package_name}' cancelled.")
             return
-
         shutil.rmtree(install_path)
         print(f"'{package_name}' has been successfully uninstalled.")
-
         record = read_record()
         if package_name in record:
             del record[package_name]
             write_record(record)
-
     except Exception as e:
         handle_error(f"An error occurred while uninstalling '{package_name}': {str(e)}. Please try again.")
 
 def update_packages():
     default_update_url = "https://raw.githubusercontent.com/ravendevteam/toolbox/refs/heads/main/packages.json"
-
     try:
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
         update_url = data.get('updateurl', None)
-
     except (FileNotFoundError, json.JSONDecodeError):
         update_url = None
-
     if not update_url:
         update_url = default_update_url
         print(f"Warning: No update URL found or the package list is missing. Using default update URL: {default_update_url}")
         print("Please note that the above error is normal upon first time updating.")
-
     print("Updating package list from server...")
-
     try:
         urllib.request.urlretrieve(update_url, get_package_file_path())
         print("Update successful!")
@@ -112,7 +93,6 @@ def list_packages():
     try:
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
-        
         print("Available Packages:\n")
         for package in data.get("packages", []):
             print(f"Name: {package['name']}")
@@ -151,44 +131,30 @@ def install_package(package_name):
     try:
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
-        
         package = next((pkg for pkg in data.get("packages", []) if pkg["name"].lower() == package_name.lower()), None)
-        
         if not package:
             handle_error(f"Package '{package_name}' not found in the package list.")
-
         platform = "Windows" if sys.platform == "win32" else "macOS"
-        
         if platform not in package["os"]:
             handle_error(f"'{package_name}' is not available for your platform ({platform}).")
-
         url = package["url"][platform]
         sha256 = package["sha256"][platform]
-
         print(f"Installing {package_name} (v{package['version']}) for {platform}...")
-
         install_path = get_installation_path(package_name)
         install_path.mkdir(parents=True, exist_ok=True)
-
         download_path = install_path / f"{package_name}.{url.split('.')[-1]}"
-        
         with tqdm(total=100, desc="Downloading", unit='%', bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt}') as pbar:
             urllib.request.urlretrieve(url, download_path, reporthook=lambda count, block_size, total_size: pbar.update(block_size / total_size * 100))
-
         print(f"Downloaded {package_name} to {download_path}")
-
         if not validate_checksum(download_path, sha256):
             handle_error(f"Checksum mismatch for {package_name}. Installation aborted.")
-
         if sys.platform == "darwin" and download_path.suffix == '.zip':
             print("Extracting the package...")
             with zipfile.ZipFile(download_path, 'r') as zip_ref:
                 zip_ref.extractall(install_path)
             print(f"Extracted {package_name} to {install_path}")
-
             download_path.unlink()
             print(f"Removed the ZIP file {download_path}")
-
         if install_path.exists():
             print(f"{package_name} installed successfully!")
 
@@ -199,7 +165,6 @@ def install_package(package_name):
                     print(f"A shortcut for {package_name} has been created on your desktop.")
                 else:
                     print(f"Warning: Couldn't find the main executable for {package_name} to create a shortcut.")
-            
             record = read_record()
             record[package_name] = {
                 "version": package["version"],
@@ -208,7 +173,6 @@ def install_package(package_name):
             write_record(record)
         else:
             handle_error(f"Installation path does not exist after extraction. Installation failed.")
-
     except FileNotFoundError:
         handle_error("Package list not found. Try updating the package list using 'update'.")
     except Exception as e:
@@ -231,7 +195,6 @@ def print_json_path():
 
 def main():
     package_file_path = get_package_file_path()
-
     if not package_file_path.exists():
         print("Package list not found.")
         print("It looks like you need to update the package list.")
@@ -239,13 +202,10 @@ def main():
         update_packages()
         if not package_file_path.exists():
             handle_error("Failed to download the package list.")
-
     if len(sys.argv) < 2:
         display_help()
         sys.exit(0)
-
     command = sys.argv[1].lower()
-
     if command == "list":
         list_packages()
     elif command == "install":
