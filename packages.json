@@ -3,15 +3,15 @@
   "packages": [
     {
       "name": "Scratchpad",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "url": {
-        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/scratchpad.exe",
-        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.1/Scratchpad-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.2/scratchpad.exe",
+        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.2/Scratchpad-MacOS.zip"
       },
       "description": "Simple, professional plaintext editor.",
       "sha256": {
-        "Windows": "f50080ca7eb315681fde916a61a4ef43561188cfc0035e45a91ff647156c3a28",
-        "macOS": "bb168bea12fbb0804800277454fe967c17c5575d75486a992df4e429a65e48a0"
+        "Windows": "9dfbb7958bebf8bdd62544a5aca6feeb0a47709cba79f6ca6241339fc993cb5e",
+        "macOS": "8d5af5f9cb5e42661512313a093f6261b320d7cfe86804d8c29508e086ab5e52"
       },
       "requirepath": false,
       "shortcut": true,
@@ -22,13 +22,13 @@
     },
     {
       "name": "Redact",
-      "version": "1.1.0",
+      "version": "1.1.2",
       "url": {
-        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.0/redact.exe"
+        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.2/redact.exe"
       },
-      "description": "Delete your files easily and securely.",
+      "description": "File shredder with a focus on simplicity and security.",
       "sha256": {
-        "Windows": "17a8c1ad2598413bb215eb3fac768310f83e40dfacf7bd1da0f02e782dca8e86"
+        "Windows": "dfab398d80594350c8002e9236d3a6dfba759acdcfd2856b7c6f18e721658a0d"
       },
       "requirepath": false,
       "shortcut": true,
@@ -38,18 +38,40 @@
     },
     {
       "name": "Toolbox",
-      "version": "1.0.0",
+      "version": "2.1.0",
       "url": {
-        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v1.0.0/toolbox.exe"
+        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v2.1.0/toolbox.exe",
+        "macOS": "https://github.com/ravendevteam/toolbox/releases/download/v2.1.0/toolbox-MacOS.zip"
       },
       "description": "Package manager for Raven software.",
       "sha256": {
-        "Windows": "a5a600e3b3c4e663ff9b6a26c82778a01516d5055311cdd8a920f6e9ffd73a50"
+        "Windows": "0e7d9e74e0bb7a9526e4bda393efb7bf349640ebefd178bd35ecf260387ff258",
+        "macOS": "093cd080befbb9114e590f740719ecbd75234089cd5328b258b71faca7970052"
       },
       "requirepath": true,
       "shortcut": false,
       "os": [
-        "Windows"
+        "Windows",
+        "macOS"
+      ]
+    },
+    {
+      "name": "FileDiff",
+      "version": "1.0.1",
+      "url": {
+        "Windows": "https://github.com/ravendevteam/filediff/releases/download/v1.0.1/filediff.exe",
+        "macOS": "https://github.com/ravendevteam/filediff/releases/download/v1.0.1/filediff-MacOS.zip"
+      },
+      "description": "Simple utility for comparing the contents of two files.",
+      "sha256": {
+        "Windows": "3a15589ef58afd5a54578b20f4f03479aee41331820816e412c993e53ce2095f",
+        "macOS": "38948914462e8fde12f22b33586f1d06c10a7399d421a7d939497935ec95a2a9"
+      },
+      "requirepath": false,
+      "shortcut": true,
+      "os": [
+        "Windows",
+        "macOS"
       ]
     }
   ]

@@ -20,8 +20,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install nuitka pyqt5
+        pip install nuitka
+
+    - name: Make build script executable
+      run: chmod +x ./build-macos.sh
 
     - name: Run build script
       run: |
@@ -31,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: macos-executable
-        path: ./dist/scratchpad.app
+        path: ./dist/toolbox.app
