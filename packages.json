@@ -40,8 +40,8 @@
       "name": "Toolbox",
       "version": "2.2.0",
       "url": {
-        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v2.2.0/toolbox.exe",
-        "macOS": "https://github.com/ravendevteam/toolbox/releases/download/v2.2.0/toolbox-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v.2.2.0/toolbox.exe",
+        "macOS": "https://github.com/ravendevteam/toolbox/releases/download/v.2.2.0/toolbox-MacOS.zip"
       },
       "description": "Package manager for Raven software.",
       "sha256": {
