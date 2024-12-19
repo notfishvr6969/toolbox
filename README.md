@@ -18,3 +18,4 @@ To update:
 ## Authors & Contributors
 
 - [Raven Development Team](https://ravendevteam.org/)
+- [Icons by Icons8](https://icons8.com/)
