@@ -5,8 +5,8 @@
       "name": "Scratchpad",
       "version": "1.2.2",
       "url": {
-        "Windows": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.2/scratchpad.exe",
-        "macOS": "https://github.com/ravendevteam/scratchpad/releases/download/v1.2.2/Scratchpad-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/scratchpad/releases/latest/download/scratchpad.exe",
+        "macOS": "https://github.com/ravendevteam/scratchpad/releases/latest/download/Scratchpad-MacOS.zip"
       },
       "description": "Simple, professional plaintext editor.",
       "sha256": {
@@ -24,7 +24,7 @@
       "name": "Redact",
       "version": "1.1.2",
       "url": {
-        "Windows": "https://github.com/ravendevteam/redact/releases/download/v1.1.2/redact.exe"
+        "Windows": "https://github.com/ravendevteam/redact/releases/latest/download/redact.exe"
       },
       "description": "File shredder with a focus on simplicity and security.",
       "sha256": {
@@ -40,8 +40,8 @@
       "name": "Toolbox",
       "version": "2.2.0",
       "url": {
-        "Windows": "https://github.com/ravendevteam/toolbox/releases/download/v.2.2.0/toolbox.exe",
-        "macOS": "https://github.com/ravendevteam/toolbox/releases/download/v.2.2.0/toolbox-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/toolbox/releases/latest/download/toolbox.exe",
+        "macOS": "https://github.com/ravendevteam/toolbox/releases/latest/download/toolbox-MacOS.zip"
       },
       "description": "Package manager for Raven software.",
       "sha256": {
@@ -59,8 +59,8 @@
       "name": "FileDiff",
       "version": "1.0.1",
       "url": {
-        "Windows": "https://github.com/ravendevteam/filediff/releases/download/v1.0.1/filediff.exe",
-        "macOS": "https://github.com/ravendevteam/filediff/releases/download/v1.0.1/filediff-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/filediff/releases/latest/download/filediff.exe",
+        "macOS": "https://github.com/ravendevteam/filediff/releases/latest/download/filediff-MacOS.zip"
       },
       "description": "Simple utility for comparing the contents of two files.",
       "sha256": {
@@ -78,8 +78,8 @@
       "name": "Resmon",
       "version": "1.0.0",
       "url": {
-        "Windows": "https://github.com/ravendevteam/resmon/releases/download/v1.0.0/resmon.exe",
-        "macOS": "https://github.com/ravendevteam/resmon/releases/download/v1.0.0/resmon-MacOS.zip"
+        "Windows": "https://github.com/ravendevteam/resmon/releases/latest/download/resmon.exe",
+        "macOS": "https://github.com/ravendevteam/resmon/releases/latest/download/resmon-MacOS.zip"
       },
       "description": "A fast, lightweight system resource monitor.",
       "sha256": {
