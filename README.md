@@ -19,3 +19,4 @@ To update:
 
 - [Raven Development Team](https://ravendevteam.org/)
 - [Icons by Icons8](https://icons8.com/)
+- [notfishvr6969](https://github.com/notfishvr6969)
