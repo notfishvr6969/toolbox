@@ -76,37 +76,50 @@ def uninstall_package(package_name, skip_confirmation):
     except Exception as e:
         handle_error(f"An error occurred while uninstalling '{package_name}': {str(e)}. Please try again.")
 
+def ensure_packages_file():
+    package_file_path = get_package_file_path()
+    if not package_file_path.exists():
+        print(Fore.YELLOW + f"Package list not found at {package_file_path}. Downloading..." + Style.RESET_ALL)
+        url = "https://raw.githubusercontent.com/ravendevteam/toolbox/main/packages.json"
+        try:
+            package_file_path.parent.mkdir(parents=True, exist_ok=True)
+            urllib.request.urlretrieve(url, package_file_path)
+            print(Fore.GREEN + f"Package list downloaded successfully to {package_file_path}." + Style.RESET_ALL)
+        except Exception as e:
+            handle_error(f"Failed to download package list: {e}")
+
 def update_packages():
-    default_update_url = "https://raw.githubusercontent.com/ravendevteam/toolbox/refs/heads/main/packages.json"
+    default_update_url = "https://raw.githubusercontent.com/ravendevteam/toolbox/main/packages.json"
     try:
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
         update_url = data.get('updateurl', default_update_url)
     except (FileNotFoundError, json.JSONDecodeError):
         update_url = default_update_url
-        print(Fore.WHITE + f"Using default update URL: {default_update_url}" + Style.RESET_ALL)
-    print(Fore.WHITE + "Updating package list from server..." + Style.RESET_ALL)
+        print(Fore.YELLOW + f"Package list is missing or invalid. Using default update URL: {default_update_url}" + Style.RESET_ALL)
+    print(Fore.WHITE + f"Updating package list from: {update_url}" + Style.RESET_ALL)
     try:
         urllib.request.urlretrieve(update_url, get_package_file_path())
-        print(Fore.GREEN + "Update successful!" + Style.RESET_ALL)
+        print(Fore.GREEN + "Package list updated successfully!" + Style.RESET_ALL)
     except Exception as e:
-        handle_error(f"Failed to update packages: {str(e)}. Please try again or check your settings.")
+        handle_error(f"Failed to update package list: {e}")
 
 def list_packages():
     try:
+        ensure_packages_file()
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
-        print("Available Packages:\n")
+        print(Fore.WHITE + "Available Packages:\n" + Style.RESET_ALL)
         for package in data.get("packages", []):
-            print(f"Name: {package['name']}")
+            print(Fore.CYAN + f"Name: {package['name']}" + Style.RESET_ALL)
             print(f"Version: {package['version']}")
             print(f"Description: {package['description']}")
             print(f"Available for: {', '.join(package['os'])}")
             print(f"Requires Path: {'Yes' if package['requirepath'] else 'No'}")
             print(f"Creates Shortcut: {'Yes' if package['shortcut'] else 'No'}")
-            print("-" * 40)
+            print(Fore.MAGENTA + "-" * 40 + Style.RESET_ALL)
     except FileNotFoundError:
-        handle_error("Package list not found. Try updating the package list using 'update'.")
+        handle_error("Package list not found. Try running the 'update' command to fetch the package list.")
     except json.JSONDecodeError:
         handle_error("Failed to read package list (corrupted or invalid JSON).")
 
@@ -135,6 +148,7 @@ def create_shortcut(target, shortcut_name):
 
 def install_package(package_name, skip_confirmation):
     try:
+        ensure_packages_file()
         with open(get_package_file_path(), 'r') as f:
             data = json.load(f)
         packages = data.get("packages", [])
@@ -148,19 +162,22 @@ def install_package(package_name, skip_confirmation):
         platform_name = platform.system()
         if platform_name not in package["os"]:
             handle_error(f"'{package_name}' is not available for your platform ({platform_name}).")
-        url = package["url"][platform_name]
-        sha256 = package["sha256"][platform_name]
         if not skip_confirmation:
             confirmation = input(f"Are you sure you want to install '{package_name}'? (Y/N): ").strip().lower()
             if confirmation != 'y':
                 print(Fore.WHITE + f"Installation of '{package_name}' cancelled." + Style.RESET_ALL)
                 return
+        url = package["url"][platform_name]
+        sha256 = package["sha256"][platform_name]
         print(Fore.WHITE + f"Installing {package_name} (v{package['version']}) for {platform_name}..." + Style.RESET_ALL)
         install_path = get_installation_path(package_name)
         install_path.mkdir(parents=True, exist_ok=True)
         download_path = install_path / f"{package_name}.{url.split('.')[-1]}"
         with tqdm(total=100, desc="Downloading", unit='%', bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt}') as pbar:
-            urllib.request.urlretrieve(url, download_path, reporthook=lambda count, block_size, total_size: pbar.update(block_size / total_size * 100))
+            urllib.request.urlretrieve(
+                url, download_path, 
+                reporthook=lambda count, block_size, total_size: pbar.update(block_size / total_size * 100)
+            )
         print(Fore.WHITE + f"Downloaded {package_name} to {download_path}" + Style.RESET_ALL)
         if not validate_checksum(download_path, sha256):
             handle_error(f"Checksum mismatch for {package_name}. Installation aborted.")
@@ -177,9 +194,9 @@ def install_package(package_name, skip_confirmation):
             }
             write_record(record)
     except FileNotFoundError:
-        handle_error("Package list not found. Try updating the package list using 'update'.")
+        handle_error("Package list not found. Try updating the package list using the 'update' command.")
     except Exception as e:
-        handle_error(f"An error occurred during installation: {str(e)}.")
+        handle_error(f"An error occurred during installation: {e}.")
 
 def main():
     parser = argparse.ArgumentParser(description="Toolbox Package Manager")
