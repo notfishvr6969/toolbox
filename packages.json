@@ -38,7 +38,7 @@
     },
     {
       "name": "Toolbox",
-      "version": "2.0.0",
+      "version": "2.2.0",
       "url": {
         "Windows": "https://github.com/ravendevteam/toolbox/releases/latest/download/toolbox.exe",
         "macOS": "https://github.com/ravendevteam/toolbox/releases/latest/download/toolbox-MacOS.zip"
