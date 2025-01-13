@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "Scratchpad",
-      "version": "latest",
+      "version": "1.2.2",
       "url": {
         "Windows": "https://github.com/ravendevteam/scratchpad/releases/latest/download/scratchpad.exe",
         "macOS": "https://github.com/ravendevteam/scratchpad/releases/latest/download/Scratchpad-MacOS.zip"
@@ -22,7 +22,7 @@
     },
     {
       "name": "Redact",
-      "version": "latest",
+      "version": "1.2.2",
       "url": {
         "Windows": "https://github.com/ravendevteam/redact/releases/latest/download/redact.exe"
       },
@@ -38,7 +38,7 @@
     },
     {
       "name": "Toolbox",
-      "version": "latest",
+      "version": "2.0.0",
       "url": {
         "Windows": "https://github.com/ravendevteam/toolbox/releases/latest/download/toolbox.exe",
         "macOS": "https://github.com/ravendevteam/toolbox/releases/latest/download/toolbox-MacOS.zip"
@@ -57,7 +57,7 @@
     },
     {
       "name": "FileDiff",
-      "version": "latest",
+      "version": "1.0.1",
       "url": {
         "Windows": "https://github.com/ravendevteam/filediff/releases/latest/download/filediff.exe",
         "macOS": "https://github.com/ravendevteam/filediff/releases/latest/download/filediff-MacOS.zip"
@@ -76,7 +76,7 @@
     },
     {
       "name": "Resmon",
-      "version": "latest",
+      "version": "1.0.0",
       "url": {
         "Windows": "https://github.com/ravendevteam/resmon/releases/latest/download/resmon.exe",
         "macOS": "https://github.com/ravendevteam/resmon/releases/latest/download/resmon-MacOS.zip"
