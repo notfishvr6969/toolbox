@@ -27,7 +27,6 @@ jobs:
 
     - name: Run build script
       run: |
-        export CCACHE_DISABLE=1
         ./build-macos.sh
 
     - name: Upload MacOS Executable
